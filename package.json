@@ -1,0 +1,69 @@
+{
+  "name": "btc-converter-vinny",
+  "version": "1.0.0",
+  "description": "A CLI to convert Bitcoin to any currency provided.",
+  "main": "index.js",
+  "scripts": {
+    "clear": "rimraf bin",
+    "create:bin": "./node_modules/.bin/babel --out-dir bin src",
+    "build": "npm run clear && npm run create:bin",
+    "build:watch": "npm run build -- --watch",
+    "lint": "./node_modules/.bin/eslint src/*.js",
+    "prepush": "npm run lint",
+    "test": "./node_modules/.bin/mocha tests/**/*.spec.js --require babel-register --require babel-polyfill",
+    "test:tdd": "npm run test -- --watch",
+    "test:coverage": "nyc npm test"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "btc-converter": "bin/main.js"
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moraisvinny/btc-converter.git"
+  },
+  "keywords": [
+    "js",
+    "tdd",
+    "library"
+  ],
+  "author": "Vinicius Morais <vinicius.reis.morais@gmail.com> (https://moraisvinny.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moraisvinny/btc-converter/issues"
+  },
+  "homepage": "https://github.com/moraisvinny/btc-converter#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.3.2",
+    "babel-register": "^6.24.0",
+    "chai": "^3.5.0",
+    "eslint": "^4.0.0",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.6.1",
+    "husky": "^0.11.9",
+    "mocha": "^3.2.0",
+    "nock": "^9.2.6",
+    "nyc": "^10.2.0",
+    "rimraf": "^2.6.1",
+    "sinon": "^5.0.10",
+    "sinon-chai": "^3.1.0"
+  },
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "commander": "^2.15.1",
+    "ora": "^2.1.0",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5"
+  }
+}
